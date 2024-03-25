@@ -1,0 +1,11 @@
+.controller{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.btn{
+    width: 30px;
+    height: 30px;
+}
