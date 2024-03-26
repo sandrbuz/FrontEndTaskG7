@@ -11,6 +11,10 @@ function App() {
     { value: 41, name: 'BASS', id: 3 },
   ]
   )
+
+  const [inputValue,setInputValue] = useState('')
+
+
   const handlePlus = (currentId) => {
     setState(
       state.map(c => {
@@ -32,6 +36,14 @@ function App() {
     );
   }
 
+  const onFormSubmit = (e) => {
+    setState([
+      ...state,
+      {value: 50, name: inputValue, id: crypto.randomUUID()}
+    ])
+    e.preventDefault();
+  }
+
   const Controllers = state.map(controller => <Controller handlePlus={handlePlus} handleMinus={handleMinus} value={controller.value} name={controller.name} key={controller.id} id={controller.id} />);
   // crypto.randomUUID()
 
@@ -41,9 +53,9 @@ function App() {
         <div className='controllers'>
           {Controllers}
         </div>
-        <form className='form'>
-          <input onChange={() => { }} value="enter control name" />
-          <button>Add</button>
+        <form onSubmit={onFormSubmit} className='form'>
+          <input type='text' onChange={(e)=>setInputValue(e.target.value)} value={inputValue} placeholder='Enter Control Name'/>
+          <input type='submit' value="Add"/>
         </form>
       </div>
     </div>
