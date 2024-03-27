@@ -44,8 +44,7 @@ function App() {
     e.preventDefault();
   }
 
-  const Controllers = state.map(controller => <Controller handlePlus={handlePlus} handleMinus={handleMinus} value={controller.value} name={controller.name} key={controller.id} id={controller.id} />);
-  // crypto.randomUUID()
+  const Controllers = state.map((controller, index) => <Controller handlePlus={handlePlus} handleMinus={handleMinus} value={controller.value} name={controller.name} key={controller.id} id={controller.id} index={index} state={state}/>);
 
   return (
     <div className="App">

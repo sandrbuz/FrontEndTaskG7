@@ -2,6 +2,15 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.iconArr{
+    display: flex;
+    flex-direction: column;
+    width: 20px;
+    height: 20px;
 }
 
 
