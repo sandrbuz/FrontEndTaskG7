@@ -58,6 +58,7 @@ function App() {
       { value: 50, name: inputValue, id: crypto.randomUUID() }
     ])
     e.preventDefault();
+    setInputValue('')
   }
 
   const Controllers = state.map((controller, index) => <Controller handlePlus={handlePlus} handleMinus={handleMinus} value={controller.value} name={controller.name} key={crypto.randomUUID()} id={controller.id} index={index} state={state} switchDown={switchDown} switchUp={switchUp}/>);
@@ -69,8 +70,8 @@ function App() {
           {Controllers}
         </div>
         <form onSubmit={onFormSubmit} className='form'>
-          <input type='text' onChange={(e) => setInputValue(e.target.value)} value={inputValue} placeholder='Enter Control Name' />
-          <input type='submit' value="Add" />
+          <input className={`inputText ${inputValue.length === 7 ? 'inputErr' : ''}`} type='text' onChange={(e) => setInputValue(e.target.value.toUpperCase())} value={inputValue} placeholder='Enter Control Name' maxLength="7" />
+          <input className="inputSubmit" type='submit' value="Add" />
         </form>
       </div>
     </div>

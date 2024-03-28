@@ -1,9 +1,19 @@
 .controller{
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    max-width: 350px;
+    justify-content: space-between;
+    max-width: 210px;
     margin: 0 auto;
+    /* border: 1px solid black; */
+    margin-bottom: 20px;
+}
+
+.rightController{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 175px;
+    width: 100%;
 }
 
 .iconArr{
