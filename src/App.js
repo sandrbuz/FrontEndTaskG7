@@ -1,18 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Controller from './Controller/Controller';
 
 function App() {
 
   const [state, setState] = useState([
-    { value: 89, name: 'VOLUME', id: 0 },
-    { value: 32, name: 'TREBLE', id: 1 },
-    { value: 50, name: 'MID', id: 2 },
-    { value: 41, name: 'BASS', id: 3 },
+    { value: 91, name: 'VOLUME', id: crypto.randomUUID() },
+    { value: 32, name: 'TREBLE', id: crypto.randomUUID() },
+    { value: 50, name: 'MID', id: crypto.randomUUID() },
+    { value: 41, name: 'BASS', id: crypto.randomUUID() },
   ]
   )
 
-  const [inputValue,setInputValue] = useState('')
+  const [inputValue, setInputValue] = useState('')
+
+
+  const switchDown = (currentIndex) => {
+    let stateCopy = [...state];
+
+    [stateCopy[currentIndex], stateCopy[currentIndex + 1]] = [stateCopy[currentIndex + 1], stateCopy[currentIndex]];
+
+    setState(stateCopy)
+  }
+  const switchUp = (currentIndex) => {
+    let stateCopy = [...state];
+
+    [stateCopy[currentIndex], stateCopy[currentIndex - 1]] = [stateCopy[currentIndex - 1], stateCopy[currentIndex]];
+
+    setState(stateCopy)
+  }
 
 
   const handlePlus = (currentId) => {
@@ -39,12 +55,12 @@ function App() {
   const onFormSubmit = (e) => {
     setState([
       ...state,
-      {value: 50, name: inputValue, id: crypto.randomUUID()}
+      { value: 50, name: inputValue, id: crypto.randomUUID() }
     ])
     e.preventDefault();
   }
 
-  const Controllers = state.map((controller, index) => <Controller handlePlus={handlePlus} handleMinus={handleMinus} value={controller.value} name={controller.name} key={controller.id} id={controller.id} index={index} state={state}/>);
+  const Controllers = state.map((controller, index) => <Controller handlePlus={handlePlus} handleMinus={handleMinus} value={controller.value} name={controller.name} key={crypto.randomUUID()} id={controller.id} index={index} state={state} switchDown={switchDown} switchUp={switchUp}/>);
 
   return (
     <div className="App">
@@ -53,8 +69,8 @@ function App() {
           {Controllers}
         </div>
         <form onSubmit={onFormSubmit} className='form'>
-          <input type='text' onChange={(e)=>setInputValue(e.target.value)} value={inputValue} placeholder='Enter Control Name'/>
-          <input type='submit' value="Add"/>
+          <input type='text' onChange={(e) => setInputValue(e.target.value)} value={inputValue} placeholder='Enter Control Name' />
+          <input type='submit' value="Add" />
         </form>
       </div>
     </div>

@@ -12,8 +12,8 @@ const Controller = (props) => {
     return (
         <div className={s.controller}>
             <div>
-                {canSwitchBottom && <img className={s.iconArr} src={iconTop} alt="iconTop" />}
-                {canSwitchTop && <img className={s.iconArr} src={iconBottom} alt="iconBottom" />}
+                {canSwitchBottom && <img onClick={()=>props.switchUp(props.index)} className={s.iconArr} src={iconTop} alt="iconTop" />}
+                {canSwitchTop && <img onClick={()=>props.switchDown(props.index)} className={s.iconArr} src={iconBottom} alt="iconBottom" />}
             </div>
             <button onClick={()=> props.handleMinus(props.id)} className={s.btn}>-</button>
             <div className={isRed ? s.red : undefined}>
